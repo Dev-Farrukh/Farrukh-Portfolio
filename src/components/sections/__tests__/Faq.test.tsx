@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Who is Nikhil Rajput?",
     answer:
-      "Nikhil Rajput is a Software Development Engineer and AI Lead from India who builds reliable products.",
+      "Nikhil Rajput is a Software Development Engineer and AI Lead from PK who builds reliable products.",
   },
   { question: "What does Nikhil build?", answer: "Full-stack web and mobile products." },
   { question: "What is Nikhil's tech stack?", answer: "TypeScript, React, Next.js, Node.js." },

@@ -33,7 +33,7 @@ const EXPERIENCES: ExperienceRow[] = [
     order: 2,
   },
    {
-    id: "bidec-solutions",
+    id: "bidec-solutions-",
     role: "Frontend Intern",
     org: "Bidec Solutions",
     period: "2025 Nov — 2026 Jan",

@@ -22,7 +22,7 @@ const base: MergedProject = {
   language: "Dart",
   description: "A thing.",
   homepage: null,
-  htmlUrl: "https://github.com/nixrajput/rippl",
+  htmlUrl: "https://github.com/dev-farrukh/rippl",
   coverImage: null,
   screenshots: [],
   readmeExcerpt: null,
@@ -59,7 +59,7 @@ describe("ProjectCard", () => {
   it("renders Code link pointing to GitHub URL", () => {
     render(<ProjectCard project={base} />);
     const codeLink = screen.getByText("Code").closest("a");
-    expect(codeLink).toHaveAttribute("href", "https://github.com/nixrajput/rippl");
+    expect(codeLink).toHaveAttribute("href", "https://github.com/dev-farrukh/rippl");
   });
 
   it("opens Code and Live links in a new tab (target=_blank)", () => {

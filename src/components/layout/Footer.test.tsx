@@ -28,14 +28,14 @@ vi.mock("framer-motion", () => ({
 }));
 
 const mockSocials: SocialRow[] = [
-  { platform: "github", url: "https://github.com/nixrajput", username: "nixrajput", order: 1 },
+  { platform: "github", url: "https://github.com/dev-farrukh", username: "dev-farrukh", order: 1 },
   {
     platform: "linkedin",
-    url: "https://linkedin.com/in/nixrajput",
-    username: "nixrajput",
+    url: "https://linkedin.com/in/dev-farrukh",
+    username: "dev-farrukh",
     order: 2,
   },
-  { platform: "twitter", url: "https://twitter.com/nixrajput", username: "nixrajput", order: 3 },
+  { platform: "twitter", url: "https://twitter.com/dev-farrukh", username: "dev-farrukh", order: 3 },
 ];
 
 describe("Footer", () => {
@@ -47,7 +47,7 @@ describe("Footer", () => {
   it("renders the Logo (icon only, no wordmark text)", () => {
     render(<Footer socials={mockSocials} />);
     // Wordmark text removed per design; the logo mark exposes an accessible label.
-    expect(screen.queryByText("nixrajput")).toBeNull();
+    expect(screen.queryByText("dev-farrukh")).toBeNull();
     expect(screen.getByRole("img", { name: /nikhil rajput logo/i })).toBeTruthy();
   });
 
@@ -61,14 +61,14 @@ describe("Footer", () => {
   it("renders external social links that open in a new tab (target=_blank)", () => {
     render(<Footer socials={mockSocials} />);
     const githubLink = screen.getByLabelText("github");
-    expect(githubLink.getAttribute("href")).toBe("https://github.com/nixrajput");
+    expect(githubLink.getAttribute("href")).toBe("https://github.com/dev-farrukh");
     expect(githubLink.getAttribute("target")).toBe("_blank");
     expect(githubLink.getAttribute("rel")).toBe("noopener noreferrer");
   });
 
   it("renders the sign-off and copyright line", () => {
     render(<Footer socials={mockSocials} />);
-    expect(screen.getByText(/Designed & built in India/)).toBeTruthy();
+    expect(screen.getByText(/Designed & built in Pakistan/)).toBeTruthy();
     expect(screen.getByText(/All rights reserved/)).toBeTruthy();
   });
 
@@ -80,6 +80,6 @@ describe("Footer", () => {
 
   it("renders empty socials gracefully", () => {
     render(<Footer socials={[]} />);
-    expect(screen.getByText(/Designed & built in India/)).toBeTruthy();
+    expect(screen.getByText(/Designed & built in Pakistan/)).toBeTruthy();
   });
 });

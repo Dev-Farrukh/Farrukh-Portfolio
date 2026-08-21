@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Mail, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/Button";
 
 type ContactFormProps = {
@@ -11,10 +12,15 @@ type ContactFormProps = {
 export function ContactForm({ email }: ContactFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const submissionLocked = useRef(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    if (submissionLocked.current) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const name = String(formData.get("name") ?? "").trim();
     const senderEmail = String(formData.get("email") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
@@ -25,12 +31,44 @@ export function ContactForm({ email }: ContactFormProps) {
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${senderEmail}\n\n${message}`);
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setError("Email delivery is not configured yet.");
+      setSent(false);
+      return;
+    }
+
+    submissionLocked.current = true;
+    setSubmitting(true);
     setError(null);
-    setSent(true);
-    event.currentTarget.reset();
+    setSent(false);
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: email,
+          from_name: name,
+          from_email: senderEmail,
+          message,
+        },
+        publicKey,
+      );
+      setError(null);
+      setSent(true);
+      form.reset();
+    } catch (error) {
+      console.error("EmailJS contact submission failed", error);
+      setError("Could not send your message. Please try again.");
+      setSent(false);
+    } finally {
+      submissionLocked.current = false;
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -71,19 +109,25 @@ export function ContactForm({ email }: ContactFormProps) {
           className="border-border bg-surface text-foreground placeholder:text-muted focus:ring-ring resize-y rounded-lg border px-4 py-3 outline-none focus:ring-2"
         />
       </label>
-      {error && (
+      {error && !sent && (
         <p role="alert" className="text-sm text-red-500">
           {error}
         </p>
       )}
       {sent && (
         <p role="status" className="text-sm text-green-600 dark:text-green-400">
-          Your email app should open with the message ready to send.
+          Message sent. I&apos;ll get back to you soon.
         </p>
       )}
-      <Button type="submit" variant="primary" size="lg" leftIcon={<Send className="size-4" aria-hidden />}>
+      <Button
+        type="submit"
+        variant="primary"
+        size="lg"
+        disabled={submitting}
+        leftIcon={<Send className="size-4" aria-hidden />}
+      >
         <Mail className="mr-2 size-4" aria-hidden />
-        Send me a message
+        {submitting ? "Sending..." : "Send me a message"}
       </Button>
     </form>
   );

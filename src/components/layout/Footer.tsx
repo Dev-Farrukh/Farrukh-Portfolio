@@ -38,9 +38,9 @@ export function Footer({ socials }: { socials: SocialRow[] }) {
         {/* Row 2: personal sign-off + copyright */}
         <div className="flex flex-col items-center gap-1 text-center">
           <p className="text-foreground/80 text-sm">
-            Designed &amp; built in India <span aria-label="India">🇮🇳</span>
+            Designed &amp; built in Pakistan <span aria-label="Pakistan">PK</span>
           </p>
-          <p className="text-muted text-xs">&copy; {year} Nikhil Rajput. All rights reserved.</p>
+          <p className="text-muted text-xs">&copy; {year} Farrukh Noman. All rights reserved.</p>
         </div>
       </div>
     </footer>

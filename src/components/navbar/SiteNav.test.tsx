@@ -9,8 +9,8 @@ beforeEach(() => installMatchMedia({ "(prefers-reduced-motion: reduce)": true })
 afterEach(cleanup);
 
 const socials = [
-  { platform: "GitHub", url: "https://github.com/nixrajput" },
-  { platform: "LinkedIn", url: "https://linkedin.com/in/nixrajput" },
+  { platform: "GitHub", url: "https://github.com/dev-farrukh" },
+  { platform: "LinkedIn", url: "https://linkedin.com/in/dev-farrukh" },
 ];
 
 describe("SiteNav", () => {

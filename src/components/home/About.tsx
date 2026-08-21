@@ -83,7 +83,7 @@ export function About({ profile }: { profile: AboutProfile }) {
                 <div className="border-border relative aspect-4/5 w-56 overflow-hidden rounded-3xl border backdrop-blur-sm sm:w-64">
                   <Image
                     src={profile.avatarUrl}
-                    alt={`Portrait of ${profile.name ?? "Nikhil Rajput"}`}
+                    alt={`Portrait of ${profile.name ?? "Farrukh Noman"}`}
                     fill
                     sizes="(max-width: 640px) 224px, 256px"
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"

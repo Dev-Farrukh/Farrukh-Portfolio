@@ -147,6 +147,13 @@
   --chip-surface: #ecf5f8;
   --gradient-ink: linear-gradient(135deg, #155e75 0%, #0891b2 100%);
 }
+
+/* The Glacier artwork is intentionally icy and bright; deepen it on paper so the
+   mark remains legible without changing its dark-theme appearance. */
+:root[data-palette="glacier"]:not(.dark) [data-palette-logo] {
+  filter: brightness(0.68) saturate(0.9) contrast(1.15);
+}
+
 [data-palette="glacier"].dark {
   --bg: #060c0e;
   --fg: #e8f4f7;

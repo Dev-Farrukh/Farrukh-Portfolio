@@ -18,7 +18,7 @@ export function ProjectCard({
 }) {
   const [hover, setHover] = useState(false);
 
-  const githubUrl = project.htmlUrl ?? `https://github.com/nixrajput/${project.repo}`;
+  const githubUrl = project.htmlUrl ?? `https://github.com/dev-farrukh/${project.repo}`;
   const blurb = project.description ?? "";
 
   return (

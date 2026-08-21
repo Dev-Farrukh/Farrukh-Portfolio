@@ -17,7 +17,7 @@ export function FeaturedProject({
   project: MergedProject;
   onQuickView: () => void;
 }) {
-  const githubUrl = project.htmlUrl ?? `https://github.com/nixrajput/${project.repo}`;
+  const githubUrl = project.htmlUrl ?? `https://github.com/dev-farrukh/${project.repo}`;
 
   return (
     <article className="border-border bg-surface group relative grid overflow-hidden rounded-2xl border backdrop-blur-sm transition-colors hover:border-(--brand-deep)/40 md:grid-cols-2">

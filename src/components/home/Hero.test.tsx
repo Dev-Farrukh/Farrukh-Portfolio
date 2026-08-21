@@ -7,16 +7,16 @@ beforeEach(() => installMatchMedia());
 afterEach(cleanup);
 
 const profile = {
-  name: "Nikhil Rajput",
-  roles: ["Full Stack Developer", "Flutter Developer"],
+  name: "Farrukh Noman",
+  roles: ["Full Stack Developer", "Frontend Developer"],
 };
 
 describe("Hero", () => {
   it("renders the name as the h1, split across two display lines", () => {
     render(<Hero profile={profile} />);
     const h1 = screen.getByRole("heading", { level: 1 });
-    expect(h1).toHaveTextContent(/nikhil/i);
-    expect(h1).toHaveTextContent(/rajput/i);
+    expect(h1).toHaveTextContent(/farrukh/i);
+    expect(h1).toHaveTextContent(/farrukh/i);
   });
 
   it("renders the hero tagline chip", () => {
@@ -40,7 +40,7 @@ describe("Hero", () => {
     const { rerender } = render(<Hero profile={profile} />);
     expect(screen.getByRole("link", { name: /view work/i })).toHaveAttribute("href", "#projects");
     expect(screen.queryByRole("link", { name: /sponsor/i })).not.toBeInTheDocument();
-    rerender(<Hero profile={profile} sponsorUrl="https://github.com/sponsors/nixrajput" />);
+    rerender(<Hero profile={profile} sponsorUrl="https://github.com/sponsors/dev-farrukh" />);
     expect(screen.getByRole("link", { name: /sponsor/i })).toBeInTheDocument();
   });
 

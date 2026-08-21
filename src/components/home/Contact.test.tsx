@@ -26,14 +26,13 @@ vi.mock("@/components/motion/Reveal", () => ({
 beforeEach(() => installMatchMedia());
 
 const mockSocials: SocialRow[] = [
-  { platform: "github", url: "https://github.com/nixrajput", username: "nixrajput", order: 1 },
+  { platform: "github", url: "https://github.com/dev-farrukh", username: "Dev-Farrukh", order: 1 },
   {
     platform: "linkedin",
-    url: "https://linkedin.com/in/nixrajput",
-    username: "nixrajput",
+    url: "https://linkedin.com/in/dev-farrukh",
+    username: "dev-farrukh",
     order: 2,
   },
-  { platform: "twitter", url: "https://twitter.com/nixrajput", username: "nixrajput", order: 3 },
 ];
 
 describe("platformIcon", () => {
@@ -66,15 +65,15 @@ describe("Contact", () => {
 
   it("renders social links with accessible labels", () => {
     render(<Contact socials={mockSocials} email={email} />);
-    expect(screen.getByLabelText("github: nixrajput")).toBeTruthy();
-    expect(screen.getByLabelText("linkedin: nixrajput")).toBeTruthy();
-    expect(screen.getByLabelText("twitter: nixrajput")).toBeTruthy();
+    expect(screen.getByLabelText("github: dev-farrukh")).toBeTruthy();
+    expect(screen.getByLabelText("linkedin: dev-farrukh")).toBeTruthy();
+    expect(screen.getByLabelText("twitter: dev-farrukh")).toBeTruthy();
   });
 
   it("renders external social links that open in a new tab (target=_blank)", () => {
     render(<Contact socials={mockSocials} email={email} />);
-    const githubLink = screen.getByLabelText("github: nixrajput");
-    expect(githubLink.getAttribute("href")).toBe("https://github.com/nixrajput");
+    const githubLink = screen.getByLabelText("github: dev-farrukh");
+    expect(githubLink.getAttribute("href")).toBe("https://github.com/dev-farrukh");
     expect(githubLink.getAttribute("target")).toBe("_blank");
     expect(githubLink.getAttribute("rel")).toBe("noopener noreferrer");
   });
@@ -88,15 +87,15 @@ describe("Contact", () => {
     const unsorted: SocialRow[] = [
       {
         platform: "twitter",
-        url: "https://twitter.com/nixrajput",
-        username: "nixrajput",
+        url: "https://twitter.com/dev-farrukh",
+        username: "dev-farrukh",
         order: 3,
       },
-      { platform: "github", url: "https://github.com/nixrajput", username: "nixrajput", order: 1 },
+      { platform: "github", url: "https://github.com/dev-farrukh", username: "dev-farrukh", order: 1 },
       {
         platform: "linkedin",
-        url: "https://linkedin.com/in/nixrajput",
-        username: "nixrajput",
+        url: "https://linkedin.com/in/dev-farrukh",
+        username: "dev-farrukh",
         order: 2,
       },
     ];

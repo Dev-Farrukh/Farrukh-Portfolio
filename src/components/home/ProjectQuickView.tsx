@@ -28,7 +28,7 @@ export function ProjectQuickView({
   const open = project !== null;
   if (!project) return null;
 
-  const githubUrl = project.htmlUrl ?? `https://github.com/nixrajput/${project.repo}`;
+  const githubUrl = project.htmlUrl ?? `https://github.com/dev-farrukh/${project.repo}`;
   const blurb = project.description ?? "";
   // The excerpt only earns its space when it says something the blurb did not.
   const excerpt =
