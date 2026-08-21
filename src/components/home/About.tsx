@@ -86,6 +86,7 @@ export function About({ profile }: { profile: AboutProfile }) {
                     alt={`Portrait of ${profile.name ?? "Farrukh Noman"}`}
                     fill
                     sizes="(max-width: 640px) 224px, 256px"
+                    unoptimized
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
                 </div>
