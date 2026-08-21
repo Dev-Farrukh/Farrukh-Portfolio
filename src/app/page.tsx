@@ -33,7 +33,7 @@ const PROFILE = {
     faq: false,
     contact: true,
   } as Record<string, boolean>,
-  stats: { years: "4+" , repos: "70+", stars: "5+", followers: "500+" },
+  stats: { years: 4, repos: 70, stars: 5, followers: 500 },
 };
 
 function withTimeout<T>(promise: Promise<T>, fallback: T): Promise<T> {

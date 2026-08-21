@@ -12,14 +12,22 @@ type Ramp = ReadonlyArray<readonly [number, number, number]>;
 // brand.ts supplies the DEFAULT ramp, used for the very first frame and as the fallback
 // if a variable is ever missing. The live values are read from CSS below, because a
 // visitor can change the palette at runtime and a canvas cannot inherit a CSS variable.
-const DEFAULT_RAMP: Ramp = [hexToRgb(BRAND.deep), hexToRgb(BRAND.mid), hexToRgb(BRAND.bright)];
+const DEFAULT_RAMP: Ramp = [
+  asRgbTuple(hexToRgb(BRAND.deep)),
+  asRgbTuple(hexToRgb(BRAND.mid)),
+  asRgbTuple(hexToRgb(BRAND.bright)),
+];
+
+function asRgbTuple(value: number[]): readonly [number, number, number] {
+  return [value[0] ?? 0, value[1] ?? 0, value[2] ?? 0];
+}
 
 /** Read the current ramp off <html>, falling back per-slot to the default. */
 function readRamp(): Ramp {
   const cs = getComputedStyle(document.documentElement);
   return (["--brand-deep", "--brand-mid", "--brand-bright"] as const).map((token, i) => {
     const hex = cs.getPropertyValue(token).trim();
-    return /^#[0-9a-fA-F]{6}$/.test(hex) ? hexToRgb(hex) : DEFAULT_RAMP[i];
+    return /^#[0-9a-fA-F]{6}$/.test(hex) ? asRgbTuple(hexToRgb(hex)) : DEFAULT_RAMP[i];
   });
 }
 
